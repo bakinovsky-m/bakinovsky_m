@@ -8,6 +8,7 @@ public:
     Rational(const int32_t num, const int32_t denum){
         num_ = num;
         denum_ = denum;
+        normalize();
     }
     Rational operator+ (const Rational s){
         return Rational ((num_*s.denum_ + denum_*s.num_), denum_*s.denum_);
@@ -22,7 +23,7 @@ public:
         return Rational (num_*s.denum_, denum_*s.num_);
     }
     Rational& operator= (const Rational& s) = default;
-    Rational normalize();
+    void normalize();
     double toDouble(){
             double n = num_;
             double dn = denum_;
@@ -30,17 +31,26 @@ public:
     }
 
     void print(){
-        std::cout << num_ << "/" << denum_ << std::endl;
+        if (denum_ == 1){
+            std::cout << num_ << std::endl;
+        } else {
+            std::cout << num_ << "/" << denum_ << std::endl;
+        }
     }
 private:
     int32_t num_ = 0;
     int32_t denum_ = 1;
 };
 
-Rational Rational::normalize(){
+void Rational::normalize(){
     int nod_ = nod(num_, denum_);
-    std::cout << nod_ << std::endl;
-    return Rational (num_/nod_, denum_/nod_);
+    if (num_/nod_ == denum_/nod_) {
+        num_ = num_/nod_;
+        denum_ = 1;
+    } else {
+        num_ = num_/nod_;
+        denum_ = denum_/nod_;
+    }
 }
 
 int main(){
@@ -48,7 +58,5 @@ int main(){
     Rational b = Rational(2,4);
     Rational sum = a + b;
     sum.print();
-    sum.normalize();
     sum.print();
 }
-
