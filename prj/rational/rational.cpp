@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdint>
+#include <string>
 #include "nod.h"
 class Rational {
 public:
@@ -18,7 +19,7 @@ public:
     }
     Rational operator* (const Rational s){
         return Rational (num_*s.num_, denum_*s.denum_);
-    }   
+    }
     Rational operator/ (const Rational s){
         return Rational (num_*s.denum_, denum_*s.num_);
     }
@@ -30,12 +31,12 @@ public:
             return n / dn;
     }
 
-    void print(){
-        if (denum_ == 1){
-            std::cout << num_ << std::endl;
-        } else {
-            std::cout << num_ << "/" << denum_ << std::endl;
-        }
+    std::string toString(){
+        std::string str = "";
+        str = std::to_string(num_);
+        str += "/";
+        str += std::to_string(denum_);
+        return str;
     }
 private:
     int32_t num_ = 0;
@@ -53,10 +54,12 @@ void Rational::normalize(){
     }
 }
 
+void test(){
+    Rational a = Rational(1, 2);
+    Rational b = Rational(6, 4);
+    std::cout << (a + b).toString() << std::endl;
+}
+
 int main(){
-    Rational a = Rational(1,2);
-    Rational b = Rational(2,4);
-    Rational sum = a + b;
-    sum.print();
-    sum.print();
+    test();
 }
