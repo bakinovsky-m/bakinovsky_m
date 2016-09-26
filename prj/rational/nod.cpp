@@ -2,8 +2,6 @@
 #include <cmath>
 #include "nod.h"
 
-using namespace std;
-
 int nod(int A, int B) {
   // checkers
   int a = abs(A);
@@ -27,8 +25,8 @@ int nod(int A, int B) {
 }
 
 void test_nod(int a, int b, int expectation) {
-  cout << "Nod of " << a << " and " << b << " : " << nod(a, b) << ". Expectation was " << expectation << endl;
-  nod(a, b) == expectation ? cout << "True" : cout << "False";
-  cout << endl;
+  std::cout << "Nod of " << a << " and " << b << " : " << nod(a, b) << ". Expectation was " << expectation << std::endl;
+  nod(a, b) == expectation ? std::cout << "True" : std::cout << "False";
+  std::cout << std::endl;
 }
 
