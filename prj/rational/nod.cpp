@@ -23,10 +23,3 @@ int nod(int A, int B) {
   }
   return a;
 }
-
-void test_nod(int a, int b, int expectation) {
-  std::cout << "Nod of " << a << " and " << b << " : " << nod(a, b) << ". Expectation was " << expectation << std::endl;
-  nod(a, b) == expectation ? std::cout << "True" : std::cout << "False";
-  std::cout << std::endl;
-}
-

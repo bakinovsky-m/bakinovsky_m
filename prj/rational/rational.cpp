@@ -8,16 +8,16 @@ Rational::Rational(const int32_t num, const int32_t denum){
         normalize();
 }
 Rational Rational::operator+ (const Rational s){
-        return Rational ((num_*s.denum_ + denum_*s.num_), denum_*s.denum_);
+        return Rational ((num_ * s.denum_ + denum_ * s.num_), denum_ * s.denum_);
 }
 Rational Rational::operator- (const Rational s){
-        return Rational ((num_*s.denum_ - denum_*s.num_), denum_*s.denum_);
+        return Rational ((num_ * s.denum_ - denum_ * s.num_), denum_ * s.denum_);
 }
 Rational Rational::operator* (const Rational s){
-        return Rational (num_*s.num_, denum_*s.denum_);
+        return Rational (num_ * s.num_, denum_ * s.denum_);
 }
 Rational Rational::operator/ (const Rational s){
-        return Rational (num_*s.denum_, denum_*s.num_);
+        return Rational (num_ * s.denum_, denum_ * s.num_);
 }
 Rational& Rational::operator= (const Rational& s) = default;
 
@@ -37,11 +37,11 @@ std::string Rational::toString(){
 
 void Rational::normalize(){
     int nod_ = nod(num_, denum_);
-    if (num_/nod_ == denum_/nod_) {
-        num_ = num_/nod_;
+    if (num_ / nod_ == denum_ / nod_) {
+        num_ = num_ / nod_;
         denum_ = 1;
     } else {
-        num_ = num_/nod_;
-        denum_ = denum_/nod_;
+        num_ = num_ / nod_;
+        denum_ = denum_ / nod_;
     }
 }
