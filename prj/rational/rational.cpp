@@ -3,9 +3,9 @@
 Rational::Rational(){}
 Rational::Rational(const int32_t num) : num_(num){};
 Rational::Rational(const int32_t num, const int32_t denum){
-        num_ = num;
-        denum_ = denum;
-        normalize();
+    num_ = num;
+    denum_ = denum;
+    normalize();
 }
 Rational Rational::operator+ (const Rational s){
     return Rational ((num_ * s.denum_ + denum_ * s.num_), denum_ * s.denum_);
