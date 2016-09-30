@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 
 struct Complex {
     double re = 0.0;
@@ -10,10 +11,15 @@ struct Complex {
     Complex(double real, double img) : re(real), im(img){}
 
     bool operator== (Complex c) {
-        return (re == c.re && im == c.im);
+        if (abs(re - c.re) <= (1 / std::max(re, c.re)) && abs(im - c.im) <= (1 / std::max(im, c.im))){
+            return true;
+        } else {
+            return false;
+        }
+        // return (re == c.re && im == c.im);
     }
     bool operator!= (Complex c) {
-        return (re != c.re || im != c.im);
+        return (!operator==(c));
     }
 
     Complex operator+ (Complex c){
@@ -52,6 +58,14 @@ void test_binary_operations(){
     std::cout << "Subtraction: " << sub.toString() << ". Must be -2 + 2i" << std::endl;
     std::cout << "Multiplication: " << mul.toString() << ". Must be 32 + 26i" << std::endl;
     std::cout << "Division: " << div.toString() << ". Must be 0.76 - 0.32i" << std::endl;
+
+    Complex c = Complex(1, 2);
+    Complex d = Complex(1, 3);
+    if (c == d){
+        std::cout << "Equal" << std::endl;
+    } else if (c != d) {
+        std::cout << "Not equal" << std::endl;
+    }
 }
 
 int main(){
