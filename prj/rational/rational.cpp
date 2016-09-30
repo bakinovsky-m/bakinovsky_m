@@ -10,6 +10,12 @@ Rational::Rational(const int32_t num, const int32_t denum){
     denum_ = denum;
     normalize();
 }
+bool Rational::operator== (const Rational s){
+    return (num_ == s.num_ && denum_ == s.denum_);
+}
+bool Rational::operator!= (const Rational s){
+    return (!operator==(s));
+}
 Rational Rational::operator+ (const Rational s){
     return Rational ((num_ * s.denum_ + denum_ * s.num_), denum_ * s.denum_);
 }

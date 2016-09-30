@@ -14,6 +14,8 @@ public:
     Rational(const int32_t num);
     Rational(const int32_t num, const int32_t denum);
 
+    bool operator== (const Rational s);
+    bool operator!= (const Rational s);
     Rational operator+ (const Rational s);
     Rational operator- (const Rational s);
     Rational operator* (const Rational s);
