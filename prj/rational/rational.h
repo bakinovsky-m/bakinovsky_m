@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
+#include <exception>
 
 #include "nod.h"
 

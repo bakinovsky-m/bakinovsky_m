@@ -3,6 +3,9 @@
 Rational::Rational(){}
 Rational::Rational(const int32_t num) : num_(num){};
 Rational::Rational(const int32_t num, const int32_t denum){
+    if (denum == 0){
+        throw std::invalid_argument("Cannot divide by zero");
+    }
     num_ = num;
     denum_ = denum;
     normalize();
