@@ -5,18 +5,18 @@
 struct Complex {
     double re = 0.0;
     double im = 0.0;
+    double EPSILON = 0.000000000001;
 
     Complex() : Complex(0.0, 0.0){}
     Complex(double real): Complex(real, 0.0){}
     Complex(double real, double img) : re(real), im(img){}
 
     bool operator== (Complex c) {
-        if (abs(re - c.re) <= (1 / std::max(re, c.re)) && abs(im - c.im) <= (1 / std::max(im, c.im))){
+        if (fabs(re - c.re) <= EPSILON && fabs(im - c.im) <= EPSILON){
             return true;
         } else {
             return false;
         }
-        // return (re == c.re && im == c.im);
     }
     bool operator!= (Complex c) {
         return (!operator==(c));
@@ -59,8 +59,8 @@ void test_binary_operations(){
     std::cout << "Multiplication: " << mul.toString() << ". Must be 32 + 26i" << std::endl;
     std::cout << "Division: " << div.toString() << ". Must be 0.76 - 0.32i" << std::endl;
 
-    Complex c = Complex(1, 2);
-    Complex d = Complex(1, 3);
+    Complex c = Complex(0.1, 2);
+    Complex d = Complex(0.2, 2);
     if (c == d){
         std::cout << "Equal" << std::endl;
     } else if (c != d) {
