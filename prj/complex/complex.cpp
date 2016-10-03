@@ -5,7 +5,7 @@
 struct Complex {
     double re = 0.0;
     double im = 0.0;
-    double EPSILON = 0.000000000001;
+    const double EPSILON = 0.000000000001;
 
     Complex() : Complex(0.0, 0.0){}
     Complex(double real): Complex(real, 0.0){}
