@@ -1,3 +1,6 @@
+#ifndef HG_COMPLEX_H
+#define HG_COMPLEX_H
+
 #include <iostream>
 #include <string>
 #include <cmath>
@@ -19,4 +22,4 @@ struct Complex  {
     std::string toString();
     Complex& operator= (Complex& c) = default;
 };
-
+#endif
