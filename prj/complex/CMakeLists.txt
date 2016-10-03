@@ -1,3 +1,3 @@
 project(complex)
 add_definitions(-std=c++11)
-add_executable(${PROJECT_NAME} ${PROJECT_NAME}.cpp)
+add_executable(${PROJECT_NAME} test.cpp ${PROJECT_NAME}.cpp)
