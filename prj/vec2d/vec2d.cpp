@@ -20,9 +20,14 @@ bool Vec2d::operator!= (const Vec2d v){
 Vec2d Vec2d::operator+ (const Vec2d v){
     return Vec2d(x + v.x, y + v.y);
 }
-
 Vec2d Vec2d::operator- (const Vec2d v){
     return Vec2d(x - v.x, y - v.y);
+}
+Vec2d Vec2d::operator* (const double d){
+    return Vec2d(x * d, y * d);
+}
+Vec2d Vec2d::operator* (const Vec2d v){
+    return Vec2d(x * v.x, y * v.y);
 }
 
 double Vec2d::operator[] (const int ind){
@@ -35,4 +40,12 @@ double Vec2d::operator[] (const int ind){
 
 std::string Vec2d::toString(){
     std::string str = "";
+    str += std::to_string(x);
+    str += ", ";
+    str += std::to_string(y);
+    return str;
+}
+
+double Vec2d::length(){
+    return(sqrt((x * x) + (y * y)));
 }

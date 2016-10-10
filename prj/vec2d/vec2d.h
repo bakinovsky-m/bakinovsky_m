@@ -16,11 +16,14 @@ public:
 
     Vec2d operator+ (const Vec2d v);
     Vec2d operator- (const Vec2d v);
+    Vec2d operator* (const double d);
+    Vec2d operator* (const Vec2d v);
     Vec2d& operator= (const Vec2d& v) = default;
 
     double operator[] (const int ind);
 
     std::string toString();
+    double length();
 private:
     double x = 0.0;
     double y = 0.0;
