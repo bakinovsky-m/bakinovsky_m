@@ -10,33 +10,33 @@ Rational::Rational(const int32_t num, const int32_t denum){
     denum_ = denum;
     normalize();
 }
-bool Rational::operator== (const Rational s){
+bool Rational::operator== (const Rational s) const{
     return (num_ == s.num_ && denum_ == s.denum_);
 }
-bool Rational::operator!= (const Rational s){
+bool Rational::operator!= (const Rational s) const{
     return (!operator==(s));
 }
-Rational Rational::operator+ (const Rational s){
+Rational Rational::operator+ (const Rational s) const{
     return Rational ((num_ * s.denum_ + denum_ * s.num_), denum_ * s.denum_);
 }
-Rational Rational::operator- (const Rational s){
+Rational Rational::operator- (const Rational s) const{
     return Rational ((num_ * s.denum_ - denum_ * s.num_), denum_ * s.denum_);
 }
-Rational Rational::operator* (const Rational s){
+Rational Rational::operator* (const Rational s) const{
     return Rational (num_ * s.num_, denum_ * s.denum_);
 }
-Rational Rational::operator/ (const Rational s){
+Rational Rational::operator/ (const Rational s) const {
     return Rational (num_ * s.denum_, denum_ * s.num_);
 }
 Rational& Rational::operator= (const Rational& s) = default;
 
-double Rational::toDouble(){
+double Rational::toDouble() const {
     double n = num_;
     double dn = denum_;
     return n / dn;
 }
 
-std::string Rational::toString(){
+std::string Rational::toString() const {
     std::string str = "";
     str = std::to_string(num_);
     str += "/";

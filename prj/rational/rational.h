@@ -14,16 +14,16 @@ public:
     Rational(const int32_t num);
     Rational(const int32_t num, const int32_t denum);
 
-    bool operator== (const Rational s);
-    bool operator!= (const Rational s);
-    Rational operator+ (const Rational s);
-    Rational operator- (const Rational s);
-    Rational operator* (const Rational s);
-    Rational operator/ (const Rational s);
+    bool operator== (const Rational s) const;
+    bool operator!= (const Rational s) const;
+    Rational operator+ (const Rational s) const;
+    Rational operator- (const Rational s) const;
+    Rational operator* (const Rational s) const;
+    Rational operator/ (const Rational s) const;
     Rational& operator= (const Rational& s);
     void normalize();
-    double toDouble();
-    std::string toString();
+    double toDouble() const;
+    std::string toString() const;
 private:
     int32_t num_ = 0;
     int32_t denum_ = 1; 
