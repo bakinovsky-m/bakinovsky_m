@@ -17,20 +17,20 @@ bool Vec2d::operator!= (const Vec2d v) const {
     return(!operator==(v));
 }
 
-Vec2d Vec2d::operator+ (const Vec2d v) const {
+Vec2d Vec2d::operator+ (const Vec2d& v) const {
     return Vec2d(x + v.x, y + v.y);
 }
-Vec2d Vec2d::operator- (const Vec2d v) const{
+Vec2d Vec2d::operator- (const Vec2d& v) const {
     return Vec2d(x - v.x, y - v.y);
 }
-Vec2d Vec2d::operator* (const double d) const {
+Vec2d Vec2d::operator* (const double& d) const {
     return Vec2d(x * d, y * d);
 }
-Vec2d Vec2d::operator* (const Vec2d v) const {
+Vec2d Vec2d::operator* (const Vec2d& v) const {
     return Vec2d(x * v.x, y * v.y);
 }
 
-double Vec2d::operator[] (const int ind) const{
+double Vec2d::operator[] (const int ind) const {
     if (ind == 0){
         return x;
     } else if(ind == 1){
@@ -38,7 +38,7 @@ double Vec2d::operator[] (const int ind) const{
     }
 }
 
-std::string Vec2d::toString(){
+std::string Vec2d::toString() const {
     std::string str = "";
     str += std::to_string(x);
     str += ", ";
@@ -46,6 +46,6 @@ std::string Vec2d::toString(){
     return str;
 }
 
-double Vec2d::length(){
+double Vec2d::length() const{
     return(sqrt((x * x) + (y * y)));
 }
