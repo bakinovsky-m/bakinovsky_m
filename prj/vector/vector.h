@@ -1,7 +1,7 @@
 #ifndef HG_VECTOR_H
 #define HG_VECTOR_H
 
-#include <iostream>
+// #include <iostream>
 #include <string>
 
 class Vector {
@@ -9,7 +9,7 @@ public:
     // constructors + destructor
     Vector();
     Vector(const int size);
-    Vector(int* arr, const int size);
+    Vector(const int* arr, const int size);
     ~Vector();
     Vector(const Vector& v);
 
@@ -20,6 +20,8 @@ public:
     bool operator== (const Vector& v) const;
     bool operator!= (const Vector& v) const;
 
+    //vector methods
+    void append(const int elem);
 
     // other methods
     std::string toString() const;
@@ -28,6 +30,8 @@ private:
     int buffer = 0;
     int length = 0;
     int *ptr = nullptr;
+
+    void copyOrWat(const Vector& v); // for copy-constructor & operator=
 };
 
 #endif

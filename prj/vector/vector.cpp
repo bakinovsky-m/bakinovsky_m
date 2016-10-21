@@ -1,12 +1,17 @@
 #include "vector.h"
 
 // constructors + destructor
+Vector::Vector(){
+    length = 10;
+    ptr = new int[length];
+}
+
 Vector::Vector(const int size){
     length = size;
     ptr = new int[length];
 }
 
-Vector::Vector(int* arr, const int size){
+Vector::Vector(const int* arr, const int size){
     length = size;
     ptr = new int[length];
     for(int i = 0; i < length; i++){
@@ -18,7 +23,11 @@ Vector::~Vector(){
     delete [] ptr;
 }
 
-Vector::Vector(const Vector& v){ // copy 
+Vector::Vector(const Vector& v){ // copy
+    copyOrWat(v);
+}
+
+void Vector::copyOrWat(const Vector& v){
     length = v.length;
     ptr = new int[length];
     for(int i = 0; i < length; i++){
@@ -28,20 +37,15 @@ Vector::Vector(const Vector& v){ // copy
 
 // overrided operators
 Vector& Vector::operator= (const Vector& v){
-    length = v.length;
-    ptr = new int[length];
-    for(int i = 0; i < length; i++){
-        ptr[i] = v.ptr[i];
-    }
+    copyOrWat(v);
+    return *this;
 }
 
 int Vector::operator[] (const int ind) const{
-    std::cout << "int" << std::endl;
     return ptr[ind];
 }
 
 int& Vector::operator[] (const int ind){
-    std::cout << "int&" << std::endl;
     return ptr[ind];
 }
 
@@ -55,6 +59,25 @@ bool Vector::operator== (const Vector& v) const{
 
 bool Vector::operator!= (const Vector& v) const {
     return(!operator==(v));
+}
+
+// vector methods
+void Vector::append(const int elem){
+    buffer = length * 2;
+    int * temp_ptr = new int[length];
+    for (int i =  0; i < length; i++){
+        temp_ptr[i] = ptr[i];
+    }
+    delete [] ptr; // free before new
+    ptr = new int[buffer];
+    int ind = 0;
+    for (int i =  0; i < length; i++){
+        ptr[i] = temp_ptr[i];
+        ind = i;
+    }
+    ptr[ind + 1] = elem;
+    length += 1;
+    delete [] temp_ptr;
 }
 
 // other methods
