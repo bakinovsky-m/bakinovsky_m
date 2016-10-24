@@ -22,6 +22,7 @@ public:
 
     //vector methods
     void append(const int elem);
+    void remove(const int ind);
 
     // other methods
     std::string toString() const;

@@ -18,6 +18,6 @@ int main(){
     std::cout << "a: " << a.toString() << std::endl;
     a.append(7);
     std::cout << "a: " << a.toString() << std::endl;
-
-    std::cout << "b: " << b.toString() << std::endl;
+    a.remove(2);
+    std::cout << "a: " << a.toString() << std::endl;
 }
