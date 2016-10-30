@@ -11,5 +11,10 @@ int main(){
     std::cout << a.toString() << std::endl;
     std::cout << b.toString() << std::endl;
     std::cout << c.toString() << std::endl;
+
+    if (a == b){
+        std::cout << "Equal" << std::endl;
+    }
+
     return 0;
 }

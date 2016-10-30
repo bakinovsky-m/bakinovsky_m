@@ -9,7 +9,10 @@ public:
     Matrix2d(const int * array, const int cols, const int rows);
     ~Matrix2d();
 
+    // overrided operators
     Matrix2d operator= (const Matrix2d& m);
+    bool operator== (const Matrix2d& m) const;
+    bool operator!= (const Matrix2d& m) const;
 
     std::string toString() const;
 private:

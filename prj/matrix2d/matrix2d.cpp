@@ -24,14 +24,18 @@ Matrix2d::Matrix2d(const int * array, const int cols_, const int rows_){
     cols = cols_;
     rows = rows_;
     matrix = new int[cols*rows];
-    // for (int i = 0; i < rows; i++){
-        // for (int j = 0; j < cols; j++){
-        //     matrix[i*j + j] = array[i*j + j];
-        // }
-    // }
-    for (int i = 0; i < cols*rows; i++){
-        matrix[i] = array[i];
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < cols; j++){
+            matrix[i*cols + j] = array[i*cols + j];
+        }
     }
+    // for (int i = 0; i < cols*rows; i++){
+    //     matrix[i] = array[i];
+    // }
+}
+
+Matrix2d::~Matrix2d(){
+    delete [] matrix;
 }
 
 Matrix2d::Matrix2d(const Matrix2d& m){
@@ -44,22 +48,33 @@ Matrix2d::Matrix2d(const Matrix2d& m){
 void Matrix2d::copyOrWat(const Matrix2d& m){
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
-            matrix[i*j + j] = m.matrix[i*j + j];
+            matrix[i*cols + j] = m.matrix[i*cols + j];
         }
     }
 }
 
+
+// overrided operators
 Matrix2d Matrix2d::operator= (const Matrix2d& m){
     cols = m.cols;
     rows = m.rows;
     matrix = new int[cols * rows];
     copyOrWat(m);
+    return Matrix2d(matrix, cols, rows);
 }
 
-Matrix2d::~Matrix2d(){
-    delete [] matrix;
+bool Matrix2d::operator== (const Matrix2d& m) const{
+    for (int i = 0; i < cols*rows; i++){
+        if (matrix[i] != m.matrix[i]){
+            return false;
+        }
+    }
+    return true;
 }
 
+bool Matrix2d::operator!= (const Matrix2d& m) const{
+    return (!operator==(m));
+}
 
 // other methods
 std::string Matrix2d::toString() const{
@@ -76,7 +91,7 @@ std::string Matrix2d::toString() const{
 void Matrix2d::initWithNulls(){
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
-            matrix[i*j + i] = 0;
+            matrix[i*cols + i] = 0;
         }
     }
 }
