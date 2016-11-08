@@ -10,7 +10,7 @@ QueueOnArray::QueueOnArray(const QueueOnArray& qoa){
     tail = qoa.tail;
 }
 
-QueueOnArray QueueOnArray::operator=(const QueueOnArray& qoa){
+QueueOnArray& QueueOnArray::operator=(const QueueOnArray& qoa){
     size = qoa.size;
     delete[] array;
     array = new int[size];
@@ -19,6 +19,7 @@ QueueOnArray QueueOnArray::operator=(const QueueOnArray& qoa){
     }
     head = qoa.head;
     tail = qoa.tail;
+    return *this;
 }
 
 QueueOnArray::QueueOnArray(const int size_){
@@ -30,7 +31,7 @@ QueueOnArray::QueueOnArray(const int size_){
 
 QueueOnArray::~QueueOnArray(){
     if (array != nullptr){
-        // delete[] array;
+        delete[] array;
     }
 }
 

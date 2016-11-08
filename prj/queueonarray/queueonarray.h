@@ -5,7 +5,7 @@ class QueueOnArray{
 public:
     QueueOnArray() = default;
     QueueOnArray(const QueueOnArray& qoa);
-    QueueOnArray operator=(const QueueOnArray& qoa);
+    QueueOnArray& operator=(const QueueOnArray& qoa);
 
     QueueOnArray(const int size);
 
