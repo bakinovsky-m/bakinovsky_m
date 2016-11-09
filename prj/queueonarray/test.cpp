@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 
 #include "queueonarray.h"
 
@@ -27,5 +28,18 @@ int main(){
     b.resize(7);
     std::cout << b.toString() << std::endl;
     a = b;
+
+    QueueOnArray c = QueueOnArray(2);
+    c.push(1);
+    c.push(1);
+    try {
+        c.resize(1);
+        std::cout << c.toString() << std::endl;
+        c.push(1);
+    } catch(std::bad_array_new_length e){
+        std::cerr << e.what() << std::endl;
+    } catch (std::invalid_argument e){
+        std::cerr << e.what() << std::endl;
+    }
     return 0;
 }

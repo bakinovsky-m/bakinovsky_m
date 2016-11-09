@@ -37,7 +37,7 @@ QueueOnArray::~QueueOnArray(){
 
 void QueueOnArray::push(const int a){
     if ((head % size) == tail && array[tail] != 0){
-        // std::cout << "NO MORE PUSH PLZ" << std::endl;
+        throw std::invalid_argument("Queue is full");
         return; // EXCEPTION!!!!!!
     }
     if(a > 0){
@@ -74,6 +74,7 @@ void QueueOnArray::resize(const int newSize){
         delete[] tempArray;
         size = newSize;
     } else {
+        throw std::bad_array_new_length();
         return; // EXCEPTION!!!!!!!
     }
 }
