@@ -24,14 +24,14 @@ Matrix2d::Matrix2d(const int * array, const int cols_, const int rows_){
     cols = cols_;
     rows = rows_;
     matrix = new int[cols*rows];
-    for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){
-            matrix[i*cols + j] = array[i*cols + j];
-        }
-    }
-    // for (int i = 0; i < cols*rows; i++){
-    //     matrix[i] = array[i];
+    // for (std::ptrdiff_t i = 0; i < rows; i++){
+    //     for (std::ptrdiff_t j = 0; j < cols; j++){
+    //         matrix[i*cols + j] = array[i*cols + j];
+    //     }
     // }
+    for (std::ptrdiff_t i = 0; i < cols*rows; i++){
+        matrix[i] = array[i];
+    }
 }
 
 Matrix2d::~Matrix2d(){
@@ -46,10 +46,13 @@ Matrix2d::Matrix2d(const Matrix2d& m){
 }
 
 void Matrix2d::copyOrWat(const Matrix2d& m){
-    for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){
-            matrix[i*cols + j] = m.matrix[i*cols + j];
-        }
+    // for (int i = 0; i < rows; i++){
+    //     for (int j = 0; j < cols; j++){
+    //         matrix[i*cols + j] = m.matrix[i*cols + j];
+    //     }
+    // }
+    for (std::ptrdiff_t i = 0; i < rows*cols; i++){
+        matrix[i] = m.matrix[i];
     }
 }
 
@@ -64,7 +67,7 @@ Matrix2d Matrix2d::operator= (const Matrix2d& m){
 }
 
 bool Matrix2d::operator== (const Matrix2d& m) const{
-    for (int i = 0; i < cols*rows; i++){
+    for (std::ptrdiff_t i = 0; i < cols*rows; i++){
         if (matrix[i] != m.matrix[i]){
             return false;
         }
@@ -79,8 +82,8 @@ bool Matrix2d::operator!= (const Matrix2d& m) const{
 // other methods
 std::string Matrix2d::toString() const{
     std::string str = "";
-    for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){
+    for (std::ptrdiff_t i = 0; i < rows; i++){
+        for (std::ptrdiff_t j = 0; j < cols; j++){
             str += std::to_string(matrix[i*cols + j]);
         }
         str += "\n";
@@ -89,9 +92,12 @@ std::string Matrix2d::toString() const{
 }
 
 void Matrix2d::initWithNulls(){
-    for (int i = 0; i < rows; i++){
-        for (int j = 0; j < cols; j++){
-            matrix[i*cols + i] = 0;
-        }
+    // for (int i = 0; i < rows; i++){
+    //     for (int j = 0; j < cols; j++){
+    //         matrix[i*cols + i] = 0;
+    //     }
+    // }
+    for(std::ptrdiff_t i = 0; i < rows*cols; i++){
+        matrix[i] = 0;
     }
 }

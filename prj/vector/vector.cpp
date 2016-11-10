@@ -17,7 +17,7 @@ Vector::Vector(const int* arr, const int size){
     buffer = size;
     length = size;
     ptr = new int[length];
-    for(int i = 0; i < length; i++){
+    for(std::ptrdiff_t i = 0; i < length; i++){
         ptr[i] = arr[i];
     }
 }
@@ -33,7 +33,7 @@ Vector::Vector(const Vector& v){ // copy
 void Vector::copyOrWat(const Vector& v){
     length = v.length;
     ptr = new int[length];
-    for(int i = 0; i < length; i++){
+    for(std::ptrdiff_t i = 0; i < length; i++){
         ptr[i] = v.ptr[i];
     }
 }
@@ -54,7 +54,7 @@ int& Vector::operator[] (const int ind){
 
 bool Vector::operator== (const Vector& v) const{
     if (length != v.length) return false;
-    for (int i = 0; i < length; i++){
+    for (std::ptrdiff_t i = 0; i < length; i++){
         if(ptr[i] != v.ptr[i]) return false;
     }
     return true;
@@ -70,13 +70,13 @@ void Vector::append(const int elem){
         buffer = length * 2;
     }
     int * temp_ptr = new int[length];
-    for (int i =  0; i < length; i++){
+    for (std::ptrdiff_t i =  0; i < length; i++){
         temp_ptr[i] = ptr[i];
     }
     delete [] ptr; // free before new
     ptr = new int[buffer];
     int ind = 0;
-    for (int i =  0; i < length; i++){
+    for (std::ptrdiff_t i =  0; i < length; i++){
         ptr[i] = temp_ptr[i];
         ind = i;
     }
@@ -89,7 +89,7 @@ void Vector::remove(const int ind){
     length -= 1;
     int * temp_ptr = new int[length];
     int flag = 0;
-    for(int i = 0; i < length; i++){
+    for(std::ptrdiff_t i = 0; i < length; i++){
         if(i == ind - 1){
             flag = 1;
         }
@@ -101,7 +101,7 @@ void Vector::remove(const int ind){
     }
     delete [] ptr;
     ptr = new int[length];
-    for (int i = 0; i < length; i++){
+    for (std::ptrdiff_t i = 0; i < length; i++){
         ptr[i] = temp_ptr[i];
     }
 
@@ -112,7 +112,7 @@ void Vector::remove(const int ind){
 std::string Vector::toString() const {
     std::string str = "";
     str += "[";
-    for(int i = 0; i < length; i++){
+    for(std::ptrdiff_t i = 0; i < length; i++){
         str += std::to_string(*(ptr + i));
         str += " ";
     }

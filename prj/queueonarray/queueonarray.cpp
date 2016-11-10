@@ -3,7 +3,7 @@
 QueueOnArray::QueueOnArray(const QueueOnArray& qoa){
     size = qoa.size;
     array = new int[size];
-    for (int i = 0; i < size; i++){
+    for (std::ptrdiff_t i = 0; i < size; i++){
         array[i] = qoa.array[i];
     }
     head = qoa.head;
@@ -14,7 +14,7 @@ QueueOnArray& QueueOnArray::operator=(const QueueOnArray& qoa){
     size = qoa.size;
     delete[] array;
     array = new int[size];
-    for (int i = 0; i < size; i++){
+    for (std::ptrdiff_t i = 0; i < size; i++){
         array[i] = qoa.array[i];
     }
     head = qoa.head;
@@ -63,25 +63,25 @@ void QueueOnArray::resize(const int newSize){
         return; // all right
     } else if (newSize > size){
         int * tempArray = new int[size];
-        for (int i = 0; i < size; i++){
+        for (std::ptrdiff_t i = 0; i < size; i++){
             tempArray[i] = array[i];
         }
         delete[] array;
         array = new int[newSize] {0};
-        for (int i = 0; i < size; i++){
+        for (std::ptrdiff_t i = 0; i < size; i++){
             array[i] = tempArray[i];
         }
         delete[] tempArray;
         size = newSize;
     } else {
-        throw std::bad_array_new_length();
+        throw std::invalid_argument("New size is smaller than current");
         return; // EXCEPTION!!!!!!!
     }
 }
 
 std::string QueueOnArray::toString() const {
     std::string str = "";
-    for (int i = 0; i < size; i++){
+    for (std::ptrdiff_t i = 0; i < size; i++){
         str += std::to_string(array[i]);
         str += " ";
     }
@@ -90,11 +90,11 @@ std::string QueueOnArray::toString() const {
 
 void QueueOnArray::defragment(){
     int * temp = new int[size];
-    for (int i = 0; i < size; i++){
+    for (std::ptrdiff_t i = 0; i < size; i++){
         temp[i] = array[(tail + i) % size];
     }
 
-    for (int i = 0; i < size; i++){
+    for (std::ptrdiff_t i = 0; i < size; i++){
         array[i] = temp[i];
     }
     tail = 0;
