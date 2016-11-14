@@ -1,7 +1,14 @@
 #ifndef HG_STACKONLIST_H
 #define HG_STACKONLIST_H
 
-#include "node/node.h"
+#include <iostream>
+#include <string>
+
+struct Node{
+    Node(const int v): value(v){}
+    int value = 0;
+    Node * prev = nullptr;
+};
 
 class StackOnlist{
 public:
@@ -11,12 +18,11 @@ public:
 
     void push(Node& n);
     void pop();
-    Node top();
+    Node top() const;
 
     std::string toString() const;
 private:
     Node * head = nullptr;
-    Node * tail = nullptr;
 };
 
 #endif

@@ -2,32 +2,33 @@
 
 StackOnlist::StackOnlist(const StackOnlist& sol){
     head = sol.head;
-    tail = sol.tail;
 }
 
 StackOnlist StackOnlist::operator= (const StackOnlist& sol){
     head = sol.head;
-    tail = sol.tail;
+    return *this;
 }
 
 void StackOnlist::push(Node& n){
-    n.setPrev(head);
-    if (head != nullptr){
-        head->setNext(&n);
-        head = &n;
-    }
+    n.prev = head;
+    head = &n;
 }
 
 void StackOnlist::pop() {
-    head->getPrev()->setNext(nullptr);
+    head = head->prev;
 }
 
-Node StackOnlist::top(){
+Node StackOnlist::top() const {
     return *head;
 }
 
 std::string StackOnlist::toString() const {
     std::string str = "";
-    str += std::to_string((*head).getValue());
+    Node * a = head;
+    while (a != nullptr){
+        str += std::to_string(a->value);
+        str += " ";
+        a = a->prev;
+    }
     return str;
 }

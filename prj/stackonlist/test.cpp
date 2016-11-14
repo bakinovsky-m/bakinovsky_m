@@ -11,19 +11,15 @@ int main(){
     sol.push(n2);
     std::cout << sol.toString() << std::endl;
 
+    std::cout << "n1.prev" << std::endl;
+    std::cout << n1.prev << std::endl;
 
-    std::cout << "n1.getPrev()" << std::endl;
-    std::cout << n1.getPrev() << std::endl;
-    std::cout << "n1.getNext()" << std::endl;
-    std::cout << n1.getNext() << std::endl;
+    std::cout << "n2.prev" << std::endl;
+    std::cout << n2.prev << std::endl;
 
-    std::cout << "n2.getPrev()" << std::endl;
-    std::cout << n2.getPrev() << std::endl;
-    std::cout << "n2.getNext()" << std::endl;
-    std::cout << n2.getNext() << std::endl;
-    
-
+    std::cout << "n1" << std::endl;
     std::cout << &n1 << std::endl;
+    std::cout << "n2" << std::endl;
     std::cout << &n2 << std::endl;
     return 0;
 }
