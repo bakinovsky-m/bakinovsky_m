@@ -1,4 +1,6 @@
 #include <string>
+#include <ostream>
+#include <istream>
 
 class Matrix2d {
 public:
@@ -13,6 +15,10 @@ public:
     Matrix2d operator= (const Matrix2d& m);
     bool operator== (const Matrix2d& m) const;
     bool operator!= (const Matrix2d& m) const;
+
+    // std::ostream& serialize(std::ostream& ostrm);
+    void serialize(std::ostream& ostrm);
+    void deserialize(std::istream& istrm);
 
     std::string toString() const;
 private:

@@ -24,11 +24,6 @@ Matrix2d::Matrix2d(const int * array, const int cols_, const int rows_){
     cols = cols_;
     rows = rows_;
     matrix = new int[cols*rows];
-    // for (std::ptrdiff_t i = 0; i < rows; i++){
-    //     for (std::ptrdiff_t j = 0; j < cols; j++){
-    //         matrix[i*cols + j] = array[i*cols + j];
-    //     }
-    // }
     for (std::ptrdiff_t i = 0; i < cols*rows; i++){
         matrix[i] = array[i];
     }
@@ -46,11 +41,6 @@ Matrix2d::Matrix2d(const Matrix2d& m){
 }
 
 void Matrix2d::copyOrWat(const Matrix2d& m){
-    // for (int i = 0; i < rows; i++){
-    //     for (int j = 0; j < cols; j++){
-    //         matrix[i*cols + j] = m.matrix[i*cols + j];
-    //     }
-    // }
     for (std::ptrdiff_t i = 0; i < rows*cols; i++){
         matrix[i] = m.matrix[i];
     }
@@ -80,6 +70,23 @@ bool Matrix2d::operator!= (const Matrix2d& m) const{
 }
 
 // other methods
+void Matrix2d::serialize(std::ostream& ostrm) {
+    ostrm.put(cols);
+    ostrm.put(rows);
+    for (std::ptrdiff_t i = 0; i < rows*cols; i += 1){
+        ostrm.put(matrix[i]);
+    }
+    // ostrm.write(matrix, rows*cols);
+}
+
+void Matrix2d::deserialize(std::istream& istrm){
+    cols = istrm.get();
+    rows = istrm.get();
+    for (std::ptrdiff_t i = 0; i < cols*rows; i += 1){
+        matrix[i] = istrm.get();
+    }
+}
+
 std::string Matrix2d::toString() const{
     std::string str = "";
     for (std::ptrdiff_t i = 0; i < rows; i++){
@@ -92,11 +99,6 @@ std::string Matrix2d::toString() const{
 }
 
 void Matrix2d::initWithNulls(){
-    // for (int i = 0; i < rows; i++){
-    //     for (int j = 0; j < cols; j++){
-    //         matrix[i*cols + i] = 0;
-    //     }
-    // }
     for(std::ptrdiff_t i = 0; i < rows*cols; i++){
         matrix[i] = 0;
     }

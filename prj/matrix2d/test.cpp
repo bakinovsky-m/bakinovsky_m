@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "matrix2d.h"
 
 int main(){
@@ -14,6 +15,22 @@ int main(){
 
     if (a == b){
         std::cout << "Equal" << std::endl;
+    }
+
+    std::cout << "Serialization test:" << std::endl;
+    Matrix2d big_matrix = Matrix2d(5);
+    Matrix2d bm1 = big_matrix;
+
+    std::ofstream os("test.txt");
+    big_matrix.serialize(os);
+    os.close();
+
+    std::ifstream is("test.txt");
+    big_matrix.deserialize(is);
+    is.close();
+
+    if(bm1 == big_matrix){
+        std::cout << "Serialization is gooooood!" << std::endl;
     }
 
     return 0;
