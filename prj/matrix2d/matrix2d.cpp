@@ -87,19 +87,18 @@ void Matrix2d::deserialize(std::istream& istrm){
     }
 }
 
-std::string Matrix2d::toString() const{
-    std::string str = "";
-    for (std::ptrdiff_t i = 0; i < rows; i++){
-        for (std::ptrdiff_t j = 0; j < cols; j++){
-            str += std::to_string(matrix[i*cols + j]);
-        }
-        str += "\n";
-    }
-    return str;
-}
-
 void Matrix2d::initWithNulls(){
     for(std::ptrdiff_t i = 0; i < rows*cols; i++){
         matrix[i] = 0;
     }
+}
+
+std::ostream& Matrix2d::writeTo(std::ostream& ostrm) const{
+    for (std::ptrdiff_t i = 0; i < rows; i++){
+        for (std::ptrdiff_t j = 0; j < cols; j++){
+            ostrm << matrix[i*cols + j];
+        }
+        ostrm << std::endl;
+    }
+    return ostrm;
 }

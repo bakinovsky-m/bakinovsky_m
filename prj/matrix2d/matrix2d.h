@@ -1,3 +1,6 @@
+#ifndef HG_MATRIX2D_h
+#define HG_MATRIX2D_h
+
 #include <string>
 #include <ostream>
 #include <istream>
@@ -20,7 +23,7 @@ public:
     void serialize(std::ostream& ostrm);
     void deserialize(std::istream& istrm);
 
-    std::string toString() const;
+    std::ostream& writeTo(std::ostream& ostrm) const;
 private:
     int * matrix = nullptr;
     int cols = 0;
@@ -29,3 +32,9 @@ private:
     void initWithNulls();
     void copyOrWat(const Matrix2d& m);
 };
+
+inline std::ostream& operator<< (std::ostream& ostrm, const Matrix2d m){
+    return m.writeTo(ostrm);
+}
+
+#endif
