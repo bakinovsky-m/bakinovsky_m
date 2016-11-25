@@ -10,6 +10,10 @@ int main(){
     }
     std::cout << a.toString() << " + " << b.toString() << " = " << (a + b).toString() << std::endl;
     std::cout << a.toString() << " - " << b.toString() << " = " << (a - b).toString() << std::endl;
-    Rational div_zero = Rational(1, 0);
+    try
+    {Rational div_zero = Rational(1, 0);}
+    catch (const char * c){
+        std::cout << c << std::endl;
+    }
     return 0;
 }

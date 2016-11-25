@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cstdint>
 #include <string>
-#include <exception>
+#include <ostream>
 
 #include "nod.h"
 
@@ -24,8 +24,14 @@ public:
     void normalize();
     double toDouble() const;
     std::string toString() const;
+    std::ostream& writeTo(std::ostream& os) const;
 private:
     int32_t num_ = 0;
     int32_t denum_ = 1; 
 };
+
+inline std::ostream& operator<<(std::ostream& os, const Rational r){
+    return r.writeTo(os);
+}
+
 #endif
