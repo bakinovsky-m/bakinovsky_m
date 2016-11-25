@@ -88,6 +88,14 @@ std::string QueueOnArray::toString() const {
     return str;
 }
 
+std::ostream& QueueOnArray::writeTo(std::ostream& os) const{
+    for (std::ptrdiff_t i = 0; i < size; i++){
+        os << array[i];
+        os << " ";
+    }
+    return os;
+}
+
 void QueueOnArray::defragment(){
     int * temp = new int[size];
     for (std::ptrdiff_t i = 0; i < size; i++){

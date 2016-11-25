@@ -1,6 +1,9 @@
+#ifndef HG_QUEUEONARRAY_H
+#define HG_QUEUEONARRAY_H
+
 #include <string>
 #include <stdexcept>
-// #include <iostream>
+#include <ostream>
 
 class QueueOnArray{
 public:
@@ -19,6 +22,7 @@ public:
     void resize(const int newSize);
 
     std::string toString() const;
+    std::ostream& writeTo(std::ostream& os) const;
 private:
     int size = 0;
     int * array = nullptr;
@@ -27,3 +31,9 @@ private:
 
     void defragment();
 };
+
+inline std::ostream& operator<<(std::ostream& os, const QueueOnArray q){
+    return q.writeTo(os);
+}
+
+#endif

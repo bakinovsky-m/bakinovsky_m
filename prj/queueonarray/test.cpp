@@ -41,5 +41,13 @@ int main(){
     } catch (std::invalid_argument e){
         std::cerr << e.what() << std::endl;
     }
+
+    QueueOnArray qwe = QueueOnArray(5);
+    qwe.push(1);
+    qwe.push(2);
+    qwe.push(3);
+    qwe.push(4);
+    qwe.push(5);
+    std::cout << qwe << std::endl;
     return 0;
 }
