@@ -1,3 +1,4 @@
+#include <iostream>
 #include "complex.h"
 
 void test_binary_operations(){
@@ -23,4 +24,6 @@ void test_binary_operations(){
 
 int main(){
     test_binary_operations();
+    Complex a = Complex(1, 2);
+    std::cout << a << std::endl;
 }

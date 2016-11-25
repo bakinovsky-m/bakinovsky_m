@@ -1,9 +1,9 @@
 #ifndef HG_COMPLEX_H
 #define HG_COMPLEX_H
 
-#include <iostream>
 #include <string>
 #include <cmath>
+#include <ostream>
 
 struct Complex  {
     double re = 0.0;
@@ -20,6 +20,12 @@ struct Complex  {
     Complex operator* (const Complex c) const;
     Complex operator/ (const Complex c) const;
     std::string toString() const;
+    std::ostream& writeTo(std::ostream& ostrm) const;
     Complex& operator= (Complex& c) = default;
 };
+
+inline std::ostream& operator<< (std::ostream& os, const Complex& c){
+    return c.writeTo(os);
+}
+
 #endif

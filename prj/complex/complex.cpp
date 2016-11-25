@@ -37,3 +37,10 @@ std::string Complex::toString() const {
     res += "i";
     return res;
 }
+
+std::ostream& Complex::writeTo(std::ostream& ostrm) const {
+    ostrm << re;
+    ostrm << " + i*";
+    ostrm << im;
+    return ostrm;
+}
