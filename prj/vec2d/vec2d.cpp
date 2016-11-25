@@ -46,6 +46,10 @@ std::string Vec2d::toString() const {
     return str;
 }
 
+std::ostream& Vec2d::writeTo(std::ostream& os) const{
+    os << "(" << x << ", " << y << ")";
+}
+
 double Vec2d::length() const{
     return(sqrt((x * x) + (y * y)));
 }

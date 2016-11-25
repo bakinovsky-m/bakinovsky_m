@@ -12,4 +12,6 @@ int main(){
     std::cout << (a + b).toString() << std::endl;
 
     std::cout << a.length() << std::endl;
+    std::cout << a << std::endl;
+
 }
